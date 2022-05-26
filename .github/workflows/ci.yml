@@ -24,8 +24,6 @@ jobs:
           php_extensions: xdebug
           args: ${{ github.event_name == 'pull_request' && '--coverage-text' || '--coverage-html reports' }}
           # args: tests --coverage-clover ./coverage.xml
-        env:
-          XDEBUG_MODE: coverage
 
       - run: ls -al
         
