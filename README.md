@@ -1,6 +1,7 @@
 # PHP Unit Test
 
-![](./images/icon.png)
+
+<img src="./images/icon.png" width=50%>
 
 
 ![](https://github.com/tarathep/php-unittest/actions/workflows/ci.yml/badge.svg)
