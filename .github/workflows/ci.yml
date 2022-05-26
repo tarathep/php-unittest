@@ -24,9 +24,16 @@ jobs:
           php_extensions: xdebug
           args: tests --coverage-clover ./coverage.xml
         
-      - name: Upload to Codecov
-        uses: codecov/codecov-action@v2
+      - name: "Coverage Report - Comment Pull Request"
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: danhunsaker/clover-reporter-action@v0.2.17-clover
         with:
-          token: ${{ secrets.NEW_CODE_COV_TOKEN }}
-          files: ./coverage.xml
-          verbose: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          clover-file: ./clover.xml
+
+      - name: "Coverage Report - Upload Coverage Report"
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-report
+          path: ./reports/**/*.*
